@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+:root {
+    --text: #dcdcdc;
+    --hue: 216;
+    --saturation: 0%;
+    --lightness: 10%;
+    --alpha: 1;
+    --background: hsla(var(--hue), var(--saturation), var(--lightness), var(--alpha));
+}
+
+body {
+    margin: 0;
+    height: 100%;
+
+    font-family: 'Open Sans', sans-serif;
+
+    color: var(--text);
+    background-color: var(--background);
+}
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+
+    border-bottom: 1px solid grey;
+    padding-inline: 16px;
+    padding-block: 10px;
+
+    h1 {
+        font-size: 1rem;
+        font-weight: normal;
+        margin: 0;
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        align-items: center;
+
+        .created-at {
+            font-size: 0.9rem;
+            align-self: flex-end;
+            margin-bottom: 6px;
+            color: grey;
+        }
+    }
+
+    a {
+        color: var(--text);
+        font-weight: normal;
+
+        &:not(.trash) {
+            text-decoration: underline;
+        }
+    }
+
+    .icon {
+        font-size: 90%;
+    }
+}
+
+a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+:is(.button, button) {
+    /* Somehow the wrong font is used for buttons */
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+
+    display: inline-flex;
+    align-items: center;
+
+    cursor: pointer;
+
+    color: var(--text);
+    background: var(--background);
+
+    padding: 5px;
+
+    border: 2px solid hsla(var(--hue), 80%, 45%, var(--alpha));
+    border-radius: 5px;
+
+    transition: border-color 100ms ease-in-out, background-color 100ms ease-in-out;
+    &:hover {
+        background-color: hsla(var(--hue), var(--saturation), 15%, var(--alpha));
+        border-color: hsla(var(--hue), 80%, 55%, var(--alpha));
+    }
+}

@@ -1,0 +1,11 @@
+tmp/
+trash
+trash.db
+.idea/
+
+*_templ.txt
+*_templ.go
+
+node_modules/
+
+static/

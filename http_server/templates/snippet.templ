@@ -1,0 +1,70 @@
+package templates
+
+import (
+    "github.com/coma64/trash/db"
+)
+
+script storeSnippet(title, content string) {
+    window.snippet = {
+        title: title || "unnamed.txt",
+        content: content
+    };
+}
+
+templ Snippet(snippet *db.Snippet, isLoggedIn bool) {
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+        if snippet.Title != "" {
+            <title>{snippet.Title}</title>
+        } else {
+            <title>Trash</title>
+        }
+
+        <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/base16/framer.min.css" />
+
+        <script defer src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+        <link rel="stylesheet" href="/static/global.css" />
+        <link rel="stylesheet" href="/static/snippet.css" />
+        <script defer src="/static/snippet.js"></script>
+
+        @storeSnippet(snippet.Title, snippet.Content)
+    </head>
+    <body>
+        @header(snippet)
+        <main class="snippet">
+
+            <div class="actions">
+                <a class="button"><span height="20px" data-feather="edit"></span> Clone & Edit</a>
+                <button id="copy-snippet-button"><span height="20px" data-feather="clipboard"></span> Copy</button>
+                <button id="download-snippet-button"><span height="20px" data-feather="download"></span> Download</button>
+                <a href={templ.URL(snippet.Url(true))} class="button"><span height="20px" data-feather="external-link"></span> Raw</a>
+
+                if isLoggedIn {
+                    <button class="delete"><span height="20px" data-feather="trash-2"></span> Delete</button>
+                }
+            </div>
+
+            <div class="content">
+                <div class="content-header">
+                    <span data-feather="file-text"></span>
+
+                    <!-- Rendered by JS -->
+                    <p id="snippet-title" class="title"></p>
+                </div>
+                <div class="content-body">
+                    <!-- This is rendered by JS because we need to have JS representation anyway and I don't want to send the same data twice. -->
+                    <pre><code id="snippet-content"></code></pre>
+                </div>
+            </div>
+        </main>
+    </body>
+    </html>
+}

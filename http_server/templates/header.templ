@@ -1,0 +1,19 @@
+package templates
+
+import "github.com/coma64/trash/db"
+import "time"
+
+templ header(snippet *db.Snippet) {
+    <header>
+        <h1>
+            <span class="icon" height="20px" data-feather="trash-2"></span>
+            <a href="/" class="trash">Trash</a>
+            if snippet != nil {
+                / <a href={templ.URL("/s/" + snippet.Id)}>{snippet.Id}</a>
+                <span class="created-at"> created <date-time datetime={snippet.CreatedAt.Format(time.RFC3339)}></date-time></span>
+            }
+        </h1>
+
+        <button><span height="20px" data-feather="plus"></span> New Snippet</button>
+    </header>
+}

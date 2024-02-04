@@ -1,0 +1,61 @@
+.hljs-ln-code {
+    padding-left: 10px !important;
+}
+
+.snippet {
+    padding: 20px;
+    padding-top: 0;
+}
+
+pre {
+    margin: 0;
+}
+
+code {
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+.content {
+    border: 1px solid #959595;
+    border-radius: 7px;
+    box-shadow: 0 0 20px #000000a8;
+}
+
+.content-header {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+
+    padding: 5px;
+    padding-left: 10px;
+    border-bottom: 1px solid #959595;
+    background: hsla(var(--hue), var(--saturation), 13%, var(--alpha));
+
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+
+    p {
+        margin: 0;
+    }
+}
+
+.content-body {
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.delete {
+    margin-left: auto;
+    background-color: red;
+    border-color: #ca0000;
+}
